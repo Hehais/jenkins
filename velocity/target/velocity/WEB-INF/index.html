@@ -1,0 +1,17 @@
+
+#set($codeType = $request.getParameter('codeType'))
+#set($mobile = $request.getParameter('mobile'))
+#set($countryCode = $request.getParameter('countryCode'))
+
+${indexTag.setRequest($request)}
+#set($tagModel = ${indexTag.index($codeType,$mobile,$countryCode)})
+{$tagModel
+   #if($!tagModel && $!tagModel.size() > 0)
+    #foreach($map in $tagModel)
+   {
+     "name": "$!map",
+     "age": "$!map"
+   }
+    #end
+   #end
+}
